@@ -81,54 +81,91 @@ The easiest way to return custom value if `launcher_url_vehicle` is requested is
             Lcom/uievolution/microserver/modules/KeyValueStore$KVSException;
         }
     .end annotation
+
     .line 1
     invoke-virtual {p0}, Lcom/uievolution/microserver/AbstractMSModuleImpl;->getRequestInfo()Lcom/uievolution/microserver/HttpRequestInfo;
+
     move-result-object v0
+
     invoke-virtual {v0}, Lcom/uievolution/microserver/HttpRequestInfo;->getRequestUri()Ljava/lang/String;
+
     move-result-object v0
+
     invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+
     move-result-object v0
+
     .line 2
     invoke-virtual {v0}, Landroid/net/Uri;->getPath()Ljava/lang/String;
+
     move-result-object v0
+
     const-string v1, "/"
+
     const/4 v2, 0x1
+
     .line 3
     invoke-virtual {v0, v1, v2}, Ljava/lang/String;->indexOf(Ljava/lang/String;I)I
+
     move-result v1
+
     const/4 v3, -0x1
+
     if-eq v1, v3, :cond_0
+
     add-int/2addr v1, v2
+
     .line 6
     invoke-virtual {v0}, Ljava/lang/String;->length()I
+
     move-result v2
+
     if-ge v1, v2, :cond_0
+
     .line 7
     invoke-virtual {v0, v1}, Ljava/lang/String;->substring(I)Ljava/lang/String;
+
     move-result-object v0
+
     goto :goto_0
+
     :cond_0
     const/4 v0, 0x0
+
     :goto_0
     if-eqz v0, :cond_1
++   
 +   const-string v1, "launcher_url_vehicle/"
++   
 +   invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++   
 +   move-result v1
-     
++   
 +   if-nez v1, :cond_2
+
     return-object v0
+
     .line 11
     :cond_1
     new-instance v0, Lcom/uievolution/microserver/modules/KeyValueStore$KVSException;
+
     const/16 v1, 0x190
+
     const-string v2, "key is empty"
+
     invoke-direct {v0, v1, v2}, Lcom/uievolution/microserver/modules/KeyValueStore$KVSException;-><init>(ILjava/lang/String;)V
+
     throw v0
++   
 +   :cond_2
 +   new-instance v0, Lcom/uievolution/microserver/modules/KeyValueStore$KVSException;
++   
 +   const/16 v1, 0xc8
++   
 +   const-string v2, "http://my_custom_url"
++   
 +   invoke-direct {v0, v1, v2}, Lcom/uievolution/microserver/modules/KeyValueStore$KVSException;-><init>(ILjava/lang/String;)V
++   
 +   throw v0
 .end method
 ```
