@@ -62,14 +62,14 @@ tools\jadx-gui ..\apk\patched\smali\com\uievolution\microserver\modules\KeyValue
 You should see there `h()` method:
 ```java
 private String h() throws KeyValueStore.KVSException {
-	int i;
-	String path = Uri.parse(getRequestInfo().getRequestUri()).getPath();
-	int indexOf = path.indexOf("/", 1);
-	String substring = (indexOf == -1 || (i = indexOf + 1) >= path.length()) ? null : path.substring(i);
-	if (substring != null) {
-		return substring;
-	}
-	throw new KeyValueStore.KVSException(400, "key is empty");
+    int i;
+    String path = Uri.parse(getRequestInfo().getRequestUri()).getPath();
+    int indexOf = path.indexOf("/", 1);
+    String substring = (indexOf == -1 || (i = indexOf + 1) >= path.length()) ? null : path.substring(i);
+    if (substring != null) {
+        return substring;
+    }
+    throw new KeyValueStore.KVSException(400, "key is empty");
 }
 ```
 The easiest way to return custom value if `launcher_url_vehicle` is requested is to throw exception in that method, similar to *"key is empty"*. This can be done by modifying `KeyValueStoreModule.smali` as shown below:
@@ -172,17 +172,17 @@ The easiest way to return custom value if `launcher_url_vehicle` is requested is
 To verify, that everything is correct, launch `jadx-gui`. You should now see `h()` method changed as below:
 ```diff
 private String h() throws KeyValueStore.KVSException {
-	int i;
-	String path = Uri.parse(getRequestInfo().getRequestUri()).getPath();
-	int indexOf = path.indexOf("/", 1);
-	String substring = (indexOf == -1 || (i = indexOf + 1) >= path.length()) ? null : path.substring(i);
-	if (substring != null) {
-+		if (substring.equals("launcher_url_vehicle/")) {
-+			throw new KeyValueStore.KVSException(200, "http://my_custom_url");
-+		}
-		return substring;
-	}
-	throw new KeyValueStore.KVSException(400, "key is empty");
+    int i;
+    String path = Uri.parse(getRequestInfo().getRequestUri()).getPath();
+    int indexOf = path.indexOf("/", 1);
+    String substring = (indexOf == -1 || (i = indexOf + 1) >= path.length()) ? null : path.substring(i);
+    if (substring != null) {
++        if (substring.equals("launcher_url_vehicle/")) {
++            throw new KeyValueStore.KVSException(200, "http://my_custom_url");
++        }
+        return substring;
+    }
+    throw new KeyValueStore.KVSException(400, "key is empty");
 }
 ```
 Replace `http://my_custom_url` with address of page, that will be displayed on head unit.
