@@ -1,0 +1,81 @@
+body {
+	position: relative;
+	width: 800px;
+	height:480px;
+	font-family: Roboto;
+	overflow: hidden;
+	margin: 0;
+}
+
+.global-loading {
+    position:absolute;
+    z-index: 999;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.progress-bar {
+    width:500px;
+    height:10px;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    top:235px;
+    left:150px;
+}
+.progress-bar .filler {
+    position:relative;
+    height:100%;
+    width: 0px;
+    border-radius: 5px;
+    -webkit-transition: width 0.2s linear;
+}
+
+@-webkit-keyframes indeterminateAnimation {
+    0% {
+        margin-left:-200px;
+    }
+    100% {
+        margin-left:700px;
+    }
+  }
+
+.global-error {
+    position:absolute;
+    z-index: 1000;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.global-error h1 {
+	margin-top:240px;
+	font-weight: bold;
+	font-size: 35px;
+}
+.global-error h3 {
+	font-weight: normal;
+	font-size: 18px;
+}
+.global-error .button_wrapper {
+	position: absolute;
+	bottom: 50px;
+	width:100%;
+}
+.global-error input 
+{
+	background-color: transparent;
+	border: 1px solid #ecf0f1;
+	color:#ecf0f1;
+	font-size:15px;
+	padding:10px 20px;
+}
+
+#map {
+	width: 100%;
+	height: 100%;
+}

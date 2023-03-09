@@ -396,3 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/android/apk/patched
+/android/apk/repacked.apk
+/android/apk/repacked-aligned-debugSigned.apk

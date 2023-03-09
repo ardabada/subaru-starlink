@@ -1,0 +1,17 @@
+.theme-light .global-loading {
+	/* background-color: #fff; */
+	background-color: #0E1012;
+}
+.theme-light .progress-bar {
+    /* background-color:#ddd; */
+	background-color:#02356b;
+}
+.theme-light .progress-bar .filler {
+    /* background-color: #007AFC; */
+	background-color: #007AFC;
+}
+
+.theme-light .global-error {
+	background-color: #c0392b;
+	color:#ecf0f1;
+}

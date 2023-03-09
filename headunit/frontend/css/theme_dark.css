@@ -1,0 +1,9 @@
+.theme-dark .global-loading {
+	background-color: #0E1012;
+}
+.theme-dark .progress-bar {
+    background-color:#02356b;
+}
+.theme-dark .progress-bar .filler {
+    background-color: #007AFC;
+}
