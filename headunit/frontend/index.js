@@ -30,7 +30,8 @@ app.all('/js/map.js', async (req, res) => {  res.sendFile(appDir + "/js/map.js")
 app.all('/js/navigation.js', async (req, res) => {  res.sendFile(appDir + "/js/navigation.js"); });
 app.all('/js/smartaccess.dev.js', async (req, res) => {  res.sendFile(appDir + "/js/smartaccess.dev.js"); });
 app.all('/js/ui.js', async (req, res) => {  res.sendFile(appDir + "/js/ui.js"); });
-app.all('/js/themes/theme_light.js', async (req, res) => {  res.sendFile(appDir + "/js/themes/theme_light.js"); });
+app.all('/js/themes/theme_light.js', async (req, res) => {  res.sendFile(appDir + "/js/themes/theme_light.js"); }); 
+app.all('/js/themes/theme_point_cleaned.json', async (req, res) => {  res.sendFile(appDir + "/js/themes/theme_point_cleaned.json"); });
 app.all('/*', async (req, res) => {
   res.sendFile(appDir + "/index.html");
 });
@@ -39,6 +40,6 @@ app.all('/*', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
-})
+});
 
 module.exports = app;

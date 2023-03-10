@@ -9,8 +9,6 @@ Navigation.GPS = Navigation.GPS || {};
         SmartAccess.Geolocation.getCurrentPosition(successCallback, errorCallback);
     }
 })(Navigation.GPS);
-
-
 var roadStyleCache = {};
 var roadColor = {
   'major_road': '#776',
@@ -100,7 +98,7 @@ Navigation.Map = Navigation.Map || {};
         var layer = new ol.layer.VectorTile({
           renderMode: 'vector',
           source: source,
-          style: lightTheme
+          //style: lightTheme
           // style: function (feature, resolution) {
           //     var layer = feature.get('layer');
           //     if (layer == 'water' || layer == 'waterway') return waterStyle;
@@ -126,7 +124,10 @@ Navigation.Map = Navigation.Map || {};
       });
       layer.on('postrender', function() {
         // console.warn('postrender');
-      })
+      });
+	  
+	  //olms.applyStyle(layer, 'mapbox://styles/mapbox/bright-v9', {accessToken: 'pk.eyJ1IjoiYXJkYWJhZGEiLCJhIjoiY2prbWxqdzh0MGNkNjN2b3p1dmlqYWQ4OSJ9.CZWcYYEp2YSB9z9u8TGO4g'});
+	  olms.applyStyle(layer, 'http://localhost:3000/js/themes/theme_point_cleaned.json');
 
         Map._map = new ol.Map({
           allOverlays: false,
@@ -138,8 +139,11 @@ Navigation.Map = Navigation.Map || {};
             })
         });
 
+
         Map._map.on('precompose', function() { output('precompose ' + Date.now());
-        Map._map.on('rendercomplete', function() { output('rendercomplete ' + Date.now());})})
+        Map._map.on('rendercomplete', function() { output('rendercomplete ' + Date.now());})});
+		
+		//olms.apply('map', 'https://api.mapbox.com/styles/v1/mapbox/bright-v9?access_token=pk.eyJ1IjoiYXJkYWJhZGEiLCJhIjoiY2prbWxqdzh0MGNkNjN2b3p1dmlqYWQ4OSJ9.CZWcYYEp2YSB9z9u8TGO4g');
         // layer.setExtent(Navigation.Map._map.getView().calculateExtent(Navigation.Map._map.getSize()));
     }
     Map.filterFeatureOnPreRender = function(t, e, i, n, r) {
