@@ -31,20 +31,6 @@ namespace MapStyleTranslator
             return source.Replace("\"", "\\\"");
         }
 
-        public static double[] Blend(double[] color, double[]? source)
-        {
-            return BlendOpacity(color, source?[3] ?? 1);
-        }
-        public static double[] BlendOpacity(double[]? color, double opacity)
-        {
-            return new double[] { color?[0] ?? 0, color?[1] ?? 0, color?[2] ?? 0, opacity * (color?[3] ?? 1) };
-        }
-        public static double[]? GetColor(JToken source, double[]? original)
-        {
-            if (source.Type == JTokenType.String) return Blend(GetColor(source.ToString()), original);
-            return null;
-        }
-
         public static double[]? GetColor(JToken source)
         {
             if (source.Type == JTokenType.String) return GetColor(source.ToString());

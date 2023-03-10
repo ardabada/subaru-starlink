@@ -1,5 +1,7 @@
-﻿using MapStyleTranslator.Abstractions;
+﻿using System.Text.RegularExpressions;
+using MapStyleTranslator.Abstractions;
 using MapStyleTranslator.Style;
+using Newtonsoft.Json.Linq;
 
 namespace MapStyleTranslator.OlStyle
 {
@@ -13,77 +15,68 @@ namespace MapStyleTranslator.OlStyle
 
         public void ApplyStyles(IEnumerable<StyleProperty> props)
         {
-            var fillColor = props.FirstOrDefault(x => x.Name == "fill-color");
-            if (fillColor is not null)
-            {
-                EnsureFillCreated();
-                Fill!.Color = Utils.GetColor(fillColor.Value, Fill!.Color);
-            }
-
-            var fillOpacity = props.FirstOrDefault(x => x.Name == "fill-opacity");
-            if (fillOpacity is not null)
-            {
-                EnsureFillCreated();
-                Fill!.Color = Utils.BlendOpacity(Fill!.Color, double.Parse(fillOpacity.Value.ToString()));
-            }
-            var lineColor = props.FirstOrDefault(x => x.Name == "line-color");
-            if (lineColor is not null)
-            {
-                EnsureStrokeCreated();
-                Stroke!.Color = Utils.GetColor(lineColor.Value, Stroke!.Color);
-            }
-
-            //var lineOpacity = props.FirstOrDefault(x => x.Name == "line-opacity");
-            //if (lineOpacity is not null)
-            //{
-            //    EnsureStrokeCreated();
-            //    Stroke!.Color = Utils.BlendOpacity(Stroke!.Color, double.Parse(lineOpacity.Value.ToString()));
-            //}
-
             foreach (var prop in props)
             {
-                //if (prop.Name == "fill-color")
-                //{
-                //    EnsureFillCreated();
-                //    Fill!.Color = Utils.GetColor(prop.Value, Fill!.Color);
-                //}
-                //else if (prop.Name == "fill-opacity")
-                //{
-                //    EnsureFillCreated();
-                //    Fill!.Color = Utils.BlendOpacity(Fill!.Color, double.Parse(prop.Value.ToString()));
-                //}
-                //else if (prop.Name == "fill-outline-color" || prop.Name == "line-color")
-                //{
-                //    EnsureStrokeCreated();
-                //    Stroke!.Color = Utils.GetColor(prop.Value, Stroke!.Color);
-                //}
-                //else if (prop.Name == "line-width")
-                //{
-                //    EnsureStrokeCreated();
-                //    Stroke!.Width = double.Parse(prop.Value.ToString());
-                //}
-                //else if (prop.Name == "line-opacity")
-                //{
-                //    EnsureStrokeCreated();
-                //    Stroke!.Color = Utils.BlendOpacity(Stroke!.Color, double.Parse(prop.Value.ToString()));
-                //}
-                if (prop.Name == "text-size")
+                if (prop.Name == "fill-color")
+                {
+                    EnsureFillCreated();
+                    var opacity = props.FirstOrDefault(x => x.Name == "fill-opacity");
+                    Fill!.Color = Utils.GetColor(prop.Value);
+                    if (opacity is not null)
+                    {
+                        Fill.Color[3] *= GetOpacity(opacity.Value);
+                    }
+                }
+                else if (/*prop.Name == "fill-outline-color" || */prop.Name == "line-color")
+                {
+                    EnsureStrokeCreated();
+                    var opacity = props.FirstOrDefault(x => x.Name == "line-opacity");
+                    Stroke!.Color = Utils.GetColor(prop.Value);
+                    if (opacity is not null)
+                    {
+                        Stroke.Color[3] *= GetOpacity(opacity.Value);
+                    }
+                }
+                else if (prop.Name == "line-width")
+                {
+                    EnsureStrokeCreated();
+                    Stroke!.Width = double.Parse(prop.Value.ToString());
+                }
+                else if (prop.Name == "text-size")
                 {
                     EnsureTextCreated();
-                    Text!.Text = "test";
                     Text!.Font = prop.Value.ToString() + "px Arial";
+                    Text.Placement = "line";
+                }
+                else if (prop.Name == "text-field")
+                {
+                    EnsureTextCreated();
+                    var str = prop.Value.ToString().Replace("\n", "\\n").Replace("\r", "\\r");
+                    var replacement = Regex.Replace(str, "{([\\w\\d:_-]+)}", "\" + feature.get(\"$1\") + \"");
+                    Text.Text = "\"" + replacement + "\"";
                 }
                 else if (prop.Name == "text-color")
                 {
                     EnsureTextCreated();
+                    var opacity = props.FirstOrDefault(x => x.Name == "text-opacity");
                     Text!.Fill = new OlFill();
-                    Text!.Fill!.Color = Utils.GetColor(prop.Value, Text!.Fill!.Color);
+                    Text!.Fill!.Color = Utils.GetColor(prop.Value);
+                    if (opacity is not null && Text!.Fill!.Color != null)
+                    {
+                        Text!.Fill!.Color[3] *= GetOpacity(opacity.Value);
+                    }
                 }
                 else
                 {
                     //Console.WriteLine("Unknown property " + prop.Name);
                 }
             }
+        }
+
+        private static double GetOpacity(JToken value)
+        {
+            if (value.Type == JTokenType.String) return double.Parse(value.ToString());
+            return 1;
         }
 
         public static OlStyle Parse(params IEnumerable<StyleProperty>[] props)

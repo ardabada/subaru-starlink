@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using MapStyleTranslator.Abstractions;
 using MapStyleTranslator.Filter;
+using MapStyleTranslator.OlStyle;
 using MapStyleTranslator.Style;
 
 namespace MapStyleTranslator

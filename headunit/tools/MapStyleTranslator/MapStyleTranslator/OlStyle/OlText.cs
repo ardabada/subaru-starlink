@@ -93,7 +93,7 @@ namespace MapStyleTranslator.OlStyle
             }
             if (!string.IsNullOrEmpty(source.Text))
             {
-                properties["text"] = source.Text.ToJsString();
+                properties["text"] = source.Text;
             }
             if (!string.IsNullOrEmpty(source.TextAlign))
             {
