@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ol-ext+parcel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+	
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Reenie Beanie -->
+    <link href='https://fonts.googleapis.com/css?family=Reenie+Beanie' rel='stylesheet' type='text/css'>
+
+    <style type="text/css">
+	#map {
+		width:800px;
+		height:800px;
+}
+.ol-perspective-map {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+}
+.ol-perspective-map .ol-layer {
+  z-index: -1!important; /* bug using Chrome ? */
+}
+.ol-perspective-map .ol-layers {
+  transform: translateY(0) perspective(200px) rotateX(0deg) scaleY(1);
+}
+
+.ol-perspective-map .ol-overlaycontainer,
+.ol-perspective-map .ol-overlaycontainer-stopevent {
+  width: 50%!important;
+  height: 50%!important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+	</style>
+	
+	<script>
+	</script>
+
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script src="index.js" type="module"></script>
+	
+  </body>
+</html>

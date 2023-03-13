@@ -399,3 +399,5 @@ FodyWeavers.xsd
 /android/apk/patched
 /android/apk/repacked.apk
 /android/apk/repacked-aligned-debugSigned.apk
+/headunit/tools/openlayers/.parcel-cache
+/headunit/tools/openlayers/dist

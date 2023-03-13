@@ -1,0 +1,26 @@
+{
+  "name": "ol-ext-parcel-bundler",
+  "version": "2.0.0",
+  "description": "ol-ext + parcel bundler",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/index.html",
+    "prebuild": "npx rimraf dist",
+    "build": "parcel build --public-url ./ src/index.html --log-level verbose --detailed-report"
+  },
+  "keywords": [
+    "ol",
+    "ol-ext",
+    "parcel"
+  ],
+  "author": "Viglino",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "latest",
+    "parcel-transformer-geojson": "^0.0.4"
+  },
+  "dependencies": {
+    "ol": "^7.3.0",
+    "ol-ext": "^4.0.5"
+  }
+}
