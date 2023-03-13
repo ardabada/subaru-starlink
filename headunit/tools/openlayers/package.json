@@ -16,11 +16,13 @@
   "author": "Viglino",
   "license": "MIT",
   "devDependencies": {
+    "buffer": "^5.7.1",
     "parcel": "latest",
     "parcel-transformer-geojson": "^0.0.4"
   },
   "dependencies": {
     "ol": "^7.3.0",
-    "ol-ext": "^4.0.5"
+    "ol-ext": "^4.0.5",
+    "ol-mapbox-style": "^10.2.0"
   }
 }
