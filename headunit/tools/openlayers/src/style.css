@@ -1,0 +1,153 @@
+#map {
+    background-color: rgba(249, 245, 237, 1);
+    width: 800px;
+    height: 480px;
+}
+
+.mapcontainer {
+    position:relative;
+    width: 800px;
+    height: 480px;
+}
+
+.anchor-1 {
+    position: absolute;
+    border: solid 1px black;
+    top: 400px;
+    left: 390px;
+    width: 20px;
+    height: 20px;
+}
+.anchor-2 {
+    position: absolute;
+    border: solid 1px black;
+    top: 330px;
+    left: 390px;
+    width: 20px;
+    height: 20px;
+}
+.anchor-3 {
+    position: absolute;
+    border: solid 1px black;
+    top: 400px;
+    left: 590px;
+    width: 20px;
+    height: 20px;
+}
+
+.current-street {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    height:50px;
+    width:150px;
+    background-color: blue;
+    border-radius: 10px;
+    color:white;
+}
+
+.mapcontainer .btn {
+    width:50px;
+    height:50px;
+    border:1px solid red;
+    background-color:aqua;
+    color:brown;
+    border-radius: 10px;
+    padding:0;
+}
+.btn-search {
+    position: absolute;
+    bottom:25px;
+    left:25px;
+}
+.btn-search:before {
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></svg>');
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin:10px;
+}
+.btn-settings {
+    position:absolute;
+    right:25px;
+    bottom:25px;
+}
+.btn-settings:before {
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M481.9 166.6c3.2 8.7 .5 18.4-6.4 24.6l-30.9 28.1c-7.7 7.1-11.4 17.5-10.9 27.9c.1 2.9 .2 5.8 .2 8.8s-.1 5.9-.2 8.8c-.5 10.5 3.1 20.9 10.9 27.9l30.9 28.1c6.9 6.2 9.6 15.9 6.4 24.6c-4.4 11.9-9.7 23.3-15.8 34.3l-4.7 8.1c-6.6 11-14 21.4-22.1 31.2c-5.9 7.2-15.7 9.6-24.5 6.8l-39.7-12.6c-10-3.2-20.8-1.1-29.7 4.6c-4.9 3.1-9.9 6.1-15.1 8.7c-9.3 4.8-16.5 13.2-18.8 23.4l-8.9 40.7c-2 9.1-9 16.3-18.2 17.8c-13.8 2.3-28 3.5-42.5 3.5s-28.7-1.2-42.5-3.5c-9.2-1.5-16.2-8.7-18.2-17.8l-8.9-40.7c-2.2-10.2-9.5-18.6-18.8-23.4c-5.2-2.7-10.2-5.6-15.1-8.7c-8.8-5.7-19.7-7.8-29.7-4.6L69.1 425.9c-8.8 2.8-18.6 .3-24.5-6.8c-8.1-9.8-15.5-20.2-22.1-31.2l-4.7-8.1c-6.1-11-11.4-22.4-15.8-34.3c-3.2-8.7-.5-18.4 6.4-24.6l30.9-28.1c7.7-7.1 11.4-17.5 10.9-27.9c-.1-2.9-.2-5.8-.2-8.8s.1-5.9 .2-8.8c.5-10.5-3.1-20.9-10.9-27.9L8.4 191.2c-6.9-6.2-9.6-15.9-6.4-24.6c4.4-11.9 9.7-23.3 15.8-34.3l4.7-8.1c6.6-11 14-21.4 22.1-31.2c5.9-7.2 15.7-9.6 24.5-6.8l39.7 12.6c10 3.2 20.8 1.1 29.7-4.6c4.9-3.1 9.9-6.1 15.1-8.7c9.3-4.8 16.5-13.2 18.8-23.4l8.9-40.7c2-9.1 9-16.3 18.2-17.8C213.3 1.2 227.5 0 242 0s28.7 1.2 42.5 3.5c9.2 1.5 16.2 8.7 18.2 17.8l8.9 40.7c2.2 10.2 9.4 18.6 18.8 23.4c5.2 2.7 10.2 5.6 15.1 8.7c8.8 5.7 19.7 7.7 29.7 4.6l39.7-12.6c8.8-2.8 18.6-.3 24.5 6.8c8.1 9.8 15.5 20.2 22.1 31.2l4.7 8.1c6.1 11 11.4 22.4 15.8 34.3zM242 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z"/></svg>');
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin:10px;
+}
+.btn-zoom-plus {
+    position:absolute;
+    right:25px;
+    top:185px;
+}
+.btn-zoom-plus:before {
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M240 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H32c-17.7 0-32 14.3-32 32s14.3 32 32 32H176V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H240V80z"/></svg>');
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin:15px;
+}
+.btn-zoom-minus {
+    position:absolute;
+    right:25px;
+    bottom:185px;
+}
+.btn-zoom-minus:before {
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 256c0 17.7-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/></svg>');
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin:15px;
+}
+.btn-location {
+    position:absolute;
+    right:25px;
+    top:100px;
+}
+.btn-location:before {
+    content: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M413.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144C5.7 200.2-2.3 215.2 .6 230.2s16.1 25.8 31.4 25.8H208V432c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z"/></svg>');
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin:10px;
+}
+
+.route-progress {
+    position:absolute;
+    bottom:25px;
+    left:250px;
+    width: 300px;
+    height:70px;
+    border-radius:10px;
+    background-color: #0f141e;
+}
+.route-progress .progress {
+    width:250px;
+    height:8px;
+    border-radius: 15px;
+    margin:0px auto;
+    overflow: hidden;
+    background-color: red;
+}
+.route-progress .progress .passed {
+    background-color: blue;
+    height:100%;
+    width:70%;
+}
+
+.metrics {
+    color:white;
+    display: flex;
+    height:40px;
+    align-items: center;
+    justify-content: space-between;
+    padding-left:20px;
+    padding-right:20px;
+}
+.metrics span {
+    margin: 0px;
+}
