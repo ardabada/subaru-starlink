@@ -1,6 +1,8 @@
 var UI = UI || {};
 (function(ui) {
-    
+    ui.showSettings = function() {
+        $('#settings').fadeIn();
+    }
 })(UI);
 
 UI.GlobalLoading = UI.GlobalLoading || {};

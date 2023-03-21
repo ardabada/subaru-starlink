@@ -5,24 +5,29 @@ var App = App || {};
         UI.GlobalLoading.setProgress(null);
         UI.GlobalLoading.hide();
         // Navigation.GPS.getCurrentPosition(function(position) {
-            Navigation.Map.init({
-                latitude: 47.023006,
-                longitude: 28.833677,
-                zoom: 14,
-                container: 'map',
-                onTileLoadStart: App.Events.Map.OnMapTileLoadStart,
-                onTileLoadEnd: App.Events.Map.OnMapTileLoadEnd,
-                onTileLoadError: App.Events.Map.OnMapTileLoadError
-            });
+            // Navigation.Map.init({
+            //     latitude: 47.023006,
+            //     longitude: 28.833677,
+            //     zoom: 14,
+            //     container: 'map',
+            //     onTileLoadStart: App.Events.Map.OnMapTileLoadStart,
+            //     onTileLoadEnd: App.Events.Map.OnMapTileLoadEnd,
+            //     onTileLoadError: App.Events.Map.OnMapTileLoadError
+            // });
         // }, function(error) {
         //     UI.GlobalError.show('error', 'test');
         // })
     }
 })(App);
 
+App.Map = App.Map || {};
+(function(Map) {
+    
+})(App.Map);
+
 App.Events = App.Events || {};
 (function(Events) {
-})(App.Events)
+})(App.Events);
 
 App.Events.Map = App.Events.Map || {};
 (function(MapEvents) {
@@ -48,4 +53,4 @@ App.Events.Map = App.Events.Map || {};
             UI.GlobalError.show(Lang.getCurrent().errors.mapLoad);
         }
     }
-})(App.Events.Map)
+})(App.Events.Map);

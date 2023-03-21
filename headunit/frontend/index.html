@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/styles.css" media="screen">
     <link rel="stylesheet" href="css/theme_dark.css" media="screen">
@@ -21,12 +22,9 @@
                 'js/lib/polyfill/polyfill.min.js', 
                 'js/lib/polyfill/webcomponents-bundle.js',
                 'js/lib/openlayers/ol.js',
-				'https://unpkg.com/ol-mapbox-style@10.1.0/dist/olms.js',
                 'js/themes/theme_light.js',
-                'js/themes/theme_light.js',
-                'js/map.js',
                 'js/navigation.js',
-                'js/index.js' ];
+                'js/app.js' ];
             Loader.lazyload(scripts, function(i) {
                 if (i == 1) {
                     //appInit();
@@ -45,25 +43,44 @@
             var browser = SmartAccess.Browser.getInstance();
             browser.notifyLaunched(true);
         }
-
-        function output(text) {
-            // document.getElementById('output').innerHTML += text + '. '; //'<p style="margin:0;font-size:15px;">' + text + '</p>';
-        }
     </script>
 </head>
 <body class="theme-light">
-	<object type="application/NaviNativeAPI" id="plugin" width="0" height="0"></object>
     <div class="global-error" style="display:none;">
         <h1></h1>
         <h3></h3>
-        <div class="button_wrapper">
+        <div class="button-wrapper">
             <input type="button" value="" />
         </div>
     </div>
     <div class="global-loading">
         <div class="progress-bar"><div class="filler" width="0px;"></div></div>
     </div>
-    <!-- <div id="output"></div> -->
-    <div id="map"></div>
+    <div class="container">
+        <div id="map"></div>
+        <div class="current-navigation"></div>
+        <div class="music">
+            <div class="cover" style="background-color:red"></div>
+            <h1>Artist</h1>
+            <h2>Song name</h2>
+        </div>
+        <button class="btn btn-settings" onclick="UI.showSettings()">S</button>
+    </div>
+    <div class="overlay" style="display:none" id="settings">
+        <div class="overlay-content">
+            <h1 class="title">Settings</h1>
+            <div class="scrollable">
+                <div class="content">
+
+                </div>
+                <div class="scroller">
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                    <div class="current" style="height:100px; top:50px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<object type="application/NaviNativeAPI" id="plugin" width="0" height="0"></object>
 </body>
 </html>
