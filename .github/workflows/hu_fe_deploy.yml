@@ -25,4 +25,4 @@ jobs:
         run: npm --prefix ${{ env.HU_FE_PATH }} install
 
       - name: Restart server application
-          run: pm2 restart ${{ env.HU_FE_PROCESS }}
+        run: pm2 restart ${{ env.HU_FE_PROCESS }}
