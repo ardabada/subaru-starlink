@@ -2,11 +2,12 @@ name: Headunit Frontend Deploy
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+    paths: [ 'headunit' ]
 
 env:
   HU_FE_PATH: 'headunit/frontend' #headunit frontend folder
+  HU_FE_PROCESS: 'HeadunitFrontend' #process name of running frontend on droplet
 
 jobs:
   deploy:
@@ -22,3 +23,6 @@ jobs:
 
       - name: Install dependencies
         run: npm --prefix ${{ env.HU_FE_PATH }} install
+
+      - name: Restart server application
+          run: pm2 restart ${{ env.HU_FE_PROCESS }}
