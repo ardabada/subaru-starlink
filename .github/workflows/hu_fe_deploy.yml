@@ -1,0 +1,24 @@
+name: Headunit Frontend Deploy
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'headunit' ]
+
+env:
+  HU_FE_PATH: 'headunit/frontend' #headunit frontend folder
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install dependencies
+        run: npm --prefix ${{ env.HU_FE_PATH }} install
