@@ -3,22 +3,21 @@
   "version": "2.0.0",
   "description": "ol-ext + parcel bundler",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parcel src/index.html",
-    "prebuild": "npx rimraf dist",
-    "build": "parcel build --public-url ./ src/index.html --log-level verbose --detailed-report"
+    "build": "webpack --config webpack.config.js"
   },
   "keywords": [
     "ol",
-    "ol-ext",
-    "parcel"
+    "ol-ext"
   ],
   "author": "Viglino",
   "license": "MIT",
   "devDependencies": {
     "buffer": "^5.7.1",
-    "parcel": "latest",
-    "parcel-transformer-geojson": "^0.0.4"
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "babel-loader": "^9.1.2",
+    "webpack": "^5.78.0",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "ol": "^7.3.0",
