@@ -3,7 +3,7 @@ name: Headunit Frontend Deploy
 on:
   push:
     branches: [ main ]
-    paths: [ 'headunit' ]
+    paths: [ 'headunit/**' ]
 
 env:
   HU_FE_PATH: 'headunit/frontend' #headunit frontend folder
