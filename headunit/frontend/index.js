@@ -12,6 +12,11 @@ const port = 3000;
 
 const appDir = __dirname;
 
+app.all('/test.html', async (req, res) => {  res.sendFile(appDir + "/test/index.html"); });
+app.all('/bundle.js', async (req, res) => {  res.sendFile(appDir + "/test/bundle.js"); });
+app.all('/test_style.css', async (req, res) => {  res.sendFile(appDir + "/test/style.css"); });
+app.all('/test_script.js', async (req, res) => {  res.sendFile(appDir + "/test/script.js"); });
+
 app.all('/css/styles.css', async (req, res) => {  res.sendFile(appDir + "/css/styles.css"); });
 app.all('/css/theme_dark.css', async (req, res) => {  res.sendFile(appDir + "/css/theme_dark.css"); });
 app.all('/css/theme_light.css', async (req, res) => {  res.sendFile(appDir + "/css/theme_light.css"); });
@@ -33,9 +38,8 @@ app.all('/js/ui.js', async (req, res) => {  res.sendFile(appDir + "/js/ui.js"); 
 app.all('/js/themes/theme_light.js', async (req, res) => {  res.sendFile(appDir + "/js/themes/theme_light.js"); }); 
 app.all('/js/themes/theme_point_cleaned.json', async (req, res) => {  res.sendFile(appDir + "/js/themes/theme_point_cleaned.json"); });
 app.all('/*', async (req, res) => {
-  res.sendFile(appDir + "/index.html");
+  res.sendFile(appDir + "/test/index.html");
 });
-
 
 
 app.listen(port, () => {
