@@ -41,7 +41,7 @@ function initMap() {
 
     var imageUrl = new URL('image.png', import.meta.url);
     var northUrl = new URL('north.png', import.meta.url);
-    var usePerspectiveMap = true;
+    var usePerspectiveMap = false;
 
     useGeographic();
     var source = new VectorTileSource({

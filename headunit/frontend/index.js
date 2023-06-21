@@ -13,6 +13,7 @@ const port = 3000;
 const appDir = __dirname;
 
 app.all('/test.html', async (req, res) => {  res.sendFile(appDir + "/test/index.html"); });
+app.all('/test2.html', async (req, res) => {  res.sendFile(appDir + "/test/index copy.html"); });
 app.all('/bundle.js', async (req, res) => {  res.sendFile(appDir + "/test/bundle.js"); });
 app.all('/test_style.css', async (req, res) => {  res.sendFile(appDir + "/test/style.css"); });
 app.all('/test_script.js', async (req, res) => {  res.sendFile(appDir + "/test/script.js"); });
@@ -26,6 +27,8 @@ app.all('/js/lang/lang_ro.js', async (req, res) => {  res.sendFile(appDir + "/js
 app.all('/js/lang/lang.js', async (req, res) => {  res.sendFile(appDir + "/js/lang/lang.js"); });
 app.all('/js/lib/jquery/jquery-2.1.0.min.js', async (req, res) => {  res.sendFile(appDir + "/js/lib/jquery/jquery-2.1.0.min.js"); });
 app.all('/js/lib/openlayers/ol.js', async (req, res) => {  res.sendFile(appDir + "/js/lib/openlayers/ol.js"); });
+app.all('/js/lib/openlayers/olms.js', async (req, res) => {  res.sendFile(appDir + "/js/lib/openlayers/olms.js"); });
+app.all('/js/lib/openlayers/ol_ext.js', async (req, res) => {  res.sendFile(appDir + "/js/lib/openlayers/ol_ext.js"); });
 app.all('/js/lib/polyfill/misc.js', async (req, res) => {  res.sendFile(appDir + "/js/lib/polyfill/misc.js"); });
 app.all('/js/lib/polyfill/polyfill.min.js', async (req, res) => {  res.sendFile(appDir + "/js/lib/polyfill/polyfill.min.js"); });
 app.all('/js/lib/polyfill/webcomponents-bundle.js', async (req, res) => {  res.sendFile(appDir + "/js/lib/polyfill/webcomponents-bundle.js"); });
@@ -36,9 +39,10 @@ app.all('/js/navigation.js', async (req, res) => {  res.sendFile(appDir + "/js/n
 app.all('/js/smartaccess.dev.js', async (req, res) => {  res.sendFile(appDir + "/js/smartaccess.dev.js"); });
 app.all('/js/ui.js', async (req, res) => {  res.sendFile(appDir + "/js/ui.js"); });
 app.all('/js/themes/theme_light.js', async (req, res) => {  res.sendFile(appDir + "/js/themes/theme_light.js"); }); 
+app.all('/js/themes/style.js', async (req, res) => {  res.sendFile(appDir + "/js/themes/style.js"); }); 
 app.all('/js/themes/theme_point_cleaned.json', async (req, res) => {  res.sendFile(appDir + "/js/themes/theme_point_cleaned.json"); });
 app.all('/*', async (req, res) => {
-  res.sendFile(appDir + "/test/index.html");
+  res.sendFile(appDir + "/index.html");
 });
 
 

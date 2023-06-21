@@ -5,43 +5,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="test_style.css">
+  <link rel="stylesheet" href="test_style.css" />
+  <style>
+      #map {
+        width: 800px;
+        height: 600px;
+        z-index: 0;
+      }
+    </style>
 </head>
 <body>
-  <div id="main">
-		
-		<div id="container">
-			<div class="btn-group-wraper">
-				<div>
-					<button class="btn gray zi" style="width:150px;height:50px;">zoom in</button>
-          <button class="btn gray zo" style="width:150px;height:50px;">zoom out</button>
-				</div>
-				<div>
-					<button class="ft" style="width:50px;height:50px;">1</button>
-          <button class="rt" style="width:50px;height:50px;">2</button>
-          <button class="bk" style="width:50px;height:50px;">3</button>
-          <button class="lt" style="width:50px;height:50px;">4</button>
-          <button class="tp" style="width:50px;height:50px;">5</button>
-          <button class="bm" style="width:50px;height:50px;">6</button>
-				</div>
-				<div>
-					<button class="spinstart" style="width:150px;height:50px;">spin start</button>
-          <button class="spinstop" style="width:150px;height:50px;">spin stop</button>
-				</div>
-			</div>
-			<div id="shape">
-				<div class="ft"><a href="#!">1</a></div>
-				<div class="rt"><a href="#!">2</a></div>
-				<div class="bk"><a href="#!">3</a></div>
-				<div class="lt"><a href="#!">4</a></div>
-				<div class="tp"><a href="#!">5</a></div>
-				<div class="bm"><a href="#!">6</a></div>
-			</div>
-		</div>
-		
-	</div>
-
-  <script src="js/lib/jquery/jquery-2.1.0.min.js"></script>
-  <script src="test_script.js"></script>
+    
+  <div id="map"></div>
+  <!-- <script src="https://polyfill.io/v3/polyfill.js?features=String.prototype.includes"></script> -->
+  <script src="js/lib/polyfill/misc.js"></script>
+  <!-- <script src="js/lib/polyfill/polyfill.min.js"></script> -->
+  <script src="js/lib/polyfill/webcomponents-bundle.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.js?features=String.prototype.includes"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -9,6 +9,13 @@
     <link rel="stylesheet" href="css/theme_light.css" media="screen">
     <script src="js/loader.js"></script>
     <script>
+        var dpOriginal = Object.defineProperty;
+        Object.defineProperty = function(o, p, c) {
+            try {
+                return dpOriginal(o, p, c);
+            } catch (e) { }
+            return null;
+        }
         onload = function() {
             var scripts = [
                 'js/ui.js',
@@ -18,11 +25,14 @@
                 'js/lang/lang_ru.js',
                 'js/lang/lang_ro.js',
                 'js/lang/lang_en.js',
-                'js/lib/polyfill/misc.js', 
-                'js/lib/polyfill/polyfill.min.js', 
-                'js/lib/polyfill/webcomponents-bundle.js',
+                'https://polyfill.io/v3/polyfill.js?features=String.prototype.includes',
+                //'js/lib/polyfill/misc.js', 
+                //'js/lib/polyfill/polyfill.min.js', 
+                //'https://polyfill.io/v3/polyfill.js?features=CustomEvent%2CElement%2CEvent%2CMap%2CMutationObserver%2CObject.assign%2CPromise%2CResizeObserver%2CSet%2CString.prototype.includes%2CString.prototype.startsWith',
+                //'js/lib/polyfill/webcomponents-bundle.js',
                 'js/lib/openlayers/ol.js',
-                'js/themes/theme_light.js',
+                //'js/lib/openlayers/olms.js',
+                'js/themes/style.js',
                 'js/navigation.js',
                 'js/app.js' ];
             Loader.lazyload(scripts, function(i) {
@@ -53,33 +63,19 @@
             <input type="button" value="" />
         </div>
     </div>
-    <div class="global-loading">
+    <div class="global-loading" style="display:none;">
         <div class="progress-bar"><div class="filler" width="0px;"></div></div>
     </div>
     <div class="container">
+        <p>load start</p>
+        <div id="loadstart"></div>
+        <p>load end</p>
+        <div id="loadend"></div>
+        <p>prerender</p>
+        <div id="prerender"></div>
+        <p>rendercomplete</p>
+        <div id="rendercomplete"></div>
         <div id="map"></div>
-        <div class="current-navigation"></div>
-        <div class="music">
-            <div class="cover" style="background-color:blue"></div>
-            <h1>Hello</h1>
-            <h2>Test</h2>
-        </div>
-        <button class="btn btn-settings" onclick="UI.showSettings()">S</button>
-    </div>
-    <div class="overlay" style="display:none" id="settings">
-        <div class="overlay-content">
-            <h1 class="title">Settings</h1>
-            <div class="scrollable">
-                <div class="content">
-
-                </div>
-                <div class="scroller">
-                    <div class="top"></div>
-                    <div class="bottom"></div>
-                    <div class="current" style="height:100px; top:50px;"></div>
-                </div>
-            </div>
-        </div>
     </div>
 	<object type="application/NaviNativeAPI" id="plugin" width="0" height="0"></object>
 </body>

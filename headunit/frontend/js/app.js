@@ -5,15 +5,15 @@ var App = App || {};
         UI.GlobalLoading.setProgress(null);
         UI.GlobalLoading.hide();
         // Navigation.GPS.getCurrentPosition(function(position) {
-            // Navigation.Map.init({
-            //     latitude: 47.023006,
-            //     longitude: 28.833677,
-            //     zoom: 14,
-            //     container: 'map',
-            //     onTileLoadStart: App.Events.Map.OnMapTileLoadStart,
-            //     onTileLoadEnd: App.Events.Map.OnMapTileLoadEnd,
-            //     onTileLoadError: App.Events.Map.OnMapTileLoadError
-            // });
+            Navigation.Map.init({
+                latitude: 47.023006,
+                longitude: 28.833677,
+                zoom: 14,
+                container: 'map',
+                onTileLoadStart: App.Events.Map.OnMapTileLoadStart,
+                onTileLoadEnd: App.Events.Map.OnMapTileLoadEnd,
+                onTileLoadError: App.Events.Map.OnMapTileLoadError
+            });
         // }, function(error) {
         //     UI.GlobalError.show('error', 'test');
         // })
@@ -34,11 +34,12 @@ App.Events.Map = App.Events.Map || {};
     MapEvents._tilesLoading = 0;
     MapEvents._tilesLoaded = 0;
     MapEvents.OnMapTileLoadStart = function() {
-        output('Map tile load start ' + Date.now());
+        document.getElementById('loadstart').append(' ' + Date.now().toString());
+        // output('Map tile load start ' + Date.now());
         MapEvents._tilesLoading++;
     }
     MapEvents.OnMapTileLoadEnd = function() {
-        output('Map tile load end ' + Date.now());
+        document.getElementById('loadend').append(' ' + Date.now().toString());
         MapEvents._tilesLoaded++;
         if (!App.isInitialized) {
             if (MapEvents._tilesLoaded == MapEvents._tilesLoading) {

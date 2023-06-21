@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+  <!--
+    Copyright (c) 2015-2019 Jean-Marc VIGLINO, 
+    released under CeCILL-B (french BSD like) licence: http://www.cecill.info/
+  -->
+    <title>Perspective ol Map</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+    <meta name="description" content="Perspective ol map" />
+    <meta name="keywords" content="openlayers, layer, 3D, perspective, animation" />
+
+    <link rel="stylesheet" href="https://openlayers.org/en/latest/legacy/ol.css" />
+    
+    <link rel="stylesheet" href="https://viglino.github.io/ol-ext/dist/ol-ext.css" />
+  
+    <link rel="stylesheet" href="https://viglino.github.io/ol-ext/examples/style.css" />
+    <style>
+      #map {
+        width: 800px;
+        height: 600px;
+        z-index: 0;
+      }
+    </style>
+  </head>
+  <body>
+      
+    <!-- DIV pour la carte -->
+    <div id="map"></div>
+  
+    <div class="options">
+      <ul>
+        <li>
+          <label>Perspective:</label>
+          <input id="angle" type="range" step=1 min=0 max=30 onchange="map.setPerspective(this.value)" value=0 style="vertical-align: middle;" />
+        </li>
+        <li><i>use alt + drag to tilt the map...</i></li>
+      </ul>
+    </div>
+    
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script> 
+  
+    <script src="js/lib/polyfill/misc.js"></script>
+    <script src="js/lib/polyfill/polyfill.min.js"></script>
+    <script src="js/lib/polyfill/webcomponents-bundle.js"></script>
+    <!-- <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=requestAnimationFrame,Element.prototype.classList,URL,Object.assign"></script> -->
+
+
+    <script type="text/javascript" src="js/lib/openlayers/ol.js"></script>
+    <script type="text/javascript" src="js/lib/openlayers/ol_ext.js"></script>
+    <script type="text/javascript">
+    var layer = new ol.layer.Tile({ name:"OSM", source: new ol.source.OSM() });
+    
+    // The map
+    var map = new ol.PerspectiveMap({
+      target: 'map',
+      view: new ol.View ({
+        zoom: 19,
+        center: [-245406, 5986536]// [-245575, 5986863], //[-244777, 5989809]
+      }),
+      layers: [ layer ]
+    });
+  
+    map.on('change:perspective', function(e) {
+      if (!e.animating) $('#angle').val(e.angle);
+    })
+  
+    // Create vector layer for select
+    var vectorSource = new ol.source.Vector({
+      url: 'https://viglino.github.io/ol-ext/examples/data/ignf.json',
+      format: new ol.format.GeoJSON(),
+      attributions: [ "&copy; <a href='http://professionnels.ign.fr/bdtopo'>ign.fr</a>" ]
+    });
+    var vector = new ol.layer.VectorImage({
+      source: vectorSource,
+      maxResolution: 2
+    });
+    map.addLayer(vector);
+  
+    // Select and draw interaction
+    map.addInteraction(new ol.interaction.Select({ 
+      layers: [vector], 
+      condition: function (e) {
+        return (ol.events.condition.pointerMove(e) && !ol.events.condition.altKeyOnly(e))
+      }
+    }));
+    map.addInteraction(new ol.interaction.Draw({ type: 'LineString' }))
+  
+    // An overlay
+    var place = new ol.Overlay.Placemark ({
+      contentColor: '#000'
+    });
+    map.addOverlay(place);
+    map.on('click', function(e) {
+      place.show(e.coordinate);
+    });
+  
+    // Fullscreen
+    // map.addControl(new ol.control.FullScreen({ source: 'map' }));
+  
+    </script>
+  
+  </body>
+  </html>

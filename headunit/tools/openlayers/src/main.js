@@ -35,9 +35,10 @@ function initMap() {
     });
 
     var layer = new VectorTileLayer({
-        renderMode: 'vector',
+        renderMode: 'hybrid',
         source: source,
-        renderBuffer: 150
+        renderBuffer: 150,
+        declutter: true
     });
     var currentPosition = [28.832178,46.995910];
     var view = new View({
@@ -54,13 +55,14 @@ function initMap() {
         //     rotateOptions: { label: span }
         // })
     };
-    var map = new PerspectiveMap(mapOptions);
+    var map = new Map(mapOptions);
     map.on('precompose', function() { 
         // console.log(view.getCenter());
         // console.log(map.getSize());
         // console.log('precompose', Date.now()); 
     });
-    map.setPerspective(45);
 }
 
-initMap();
+export default initMap;
+
+// initMap();
