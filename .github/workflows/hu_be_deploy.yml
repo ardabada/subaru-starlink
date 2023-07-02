@@ -1,0 +1,29 @@
+name: Headunit Backend Deploy
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'headunit/backend/**' ]
+
+env:
+  HU_BE_PATH: 'headunit/backend' #headunit frontend folder
+  HU_BE_PROCESS: 'HeadunitBackend' #process name of running frontend on droplet
+  PROJECT_PATH: 'headunit/backend/Subaru.Starlink/Subaru.Starlink.sln'
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 6.0.*
+
+      - name: Install dependencies
+        run: dotnet restore ${{ env.PROJECT_PATH }}
+
+      - name: Build
+        run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
