@@ -27,3 +27,6 @@ jobs:
 
       - name: Build
         run: dotnet build ${{ env.PROJECT_PATH }} --configuration Release --no-restore
+        
+      - name: Restart server application
+        run: pm2 restart ${{ env.HU_FE_PROCESS }}
