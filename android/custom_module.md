@@ -85,7 +85,7 @@ apk\patched\smali\com\custom\modules\hello\HelloWorldModule.smali
 apk\patched\smali\com\custom\modules\hello\HelloWorldModuleFactory.smali
 ```
 
-## Modify `microserver.properties`
+## Step 8. Modify `microserver.properties`
 Open `apk\patched\assets\microserver.properties` and increase the number of modules:
 ```diff
 ## total number of modules to be loaded
