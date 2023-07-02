@@ -93,8 +93,15 @@ Open `apk\patched\assets\microserver.properties` and increase the number of modu
 +module.num=29
 ```
 Now, add definition of custom module. Specify custom HTTP route prefix as `path` and package and class name of created module factory:
-```
-module.path.28=/hello
-module.factory.28=com.custom.modules.hello.HelloWorldModuleFactory
+```diff
+module.path.27=/eve
+module.factory.27=com.subaru.global.infotainment.gen2.modules.EVEModuleFactory
++
++module.path.28=/hello
++module.factory.28=com.custom.modules.hello.HelloWorldModuleFactory
++
+##
+## WebSocket modules
+##
 ```
 Note, indexes start at 0 and end with `module.num-1`.
