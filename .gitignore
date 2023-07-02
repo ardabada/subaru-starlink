@@ -396,11 +396,6 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/android/apk/patched
-/android/apk/repacked.apk
-/android/apk/repacked-aligned-debugSigned.apk
-/headunit/tools/openlayers/.parcel-cache
-/headunit/tools/openlayers/dist
 
 #Android Studio
 *.iml
@@ -419,3 +414,12 @@ FodyWeavers.xsd
 .cxx
 local.properties
 /android/playground/.idea
+
+#Custom
+/android/apk/patched
+/android/apk/repacked.apk
+/android/apk/repacked-aligned-debugSigned.apk
+/android/custom/**/*.class
+/android/custom/**/*.dex
+/headunit/tools/openlayers/.parcel-cache
+/headunit/tools/openlayers/dist

@@ -1,13 +1,7 @@
 # Patching Android Application
 This document describes steps for patching official Subaru Starlink application in order to display custom page on head unit.
 
-## Step 1. Unpack APK
-
-```sh
-java -jar tools\apktool.jar d apk\subaru_starlink_2.3.8.apk -o apk\patched
-```
-
-## Step 2. SSL unpinning
+## Step 1. SSL unpinning
 This step is useful for debug purposes. Potentially, it could be omitted. Original credits to [android-SSL-unpinning by ryanking13](https://github.com/ryanking13/android-SSL-unpinning).
 
 ### 1. Patch manifest file:
@@ -49,7 +43,7 @@ Modify `apk\patched\res\xml\network_security_config.xml` as shown below:
 </network-security-config>
 ```
 
-## Step 3. Modify KVS module
+## Step 2. Modify KVS module
 
 Key value store module handles persistent storage of custom data. The data is stored in sqlite database. Initially, head-unit will request value of `launcher_url_vehicle` by making `GET` request to `http://192.168.1.1:80/kvs/launcher_url_vehicle/`. If response code is `200`, head unit expects a valid URI to be returned in response body. Afterwards, it performs a `POST` request to either obtained URL or predefined hardcoded value in `\home\root\local.html`, which by default is:
 
@@ -188,33 +182,3 @@ private String h() throws KeyValueStore.KVSException {
 Replace `http://my_custom_url` with address of page, that will be displayed on head unit.
 
 > **Important.** Headunit has built-in SSL validation against predefined list of certificates, located in `/etc/ssl/certs`. Thus, it is not guaranteed, that page under **https** will be loaded. If head unit is unabled to load launcher page, it will show a generic error. **http** links are allowed and are not subject to additional checks.
-
-> **Important** `jadx-gui` generates `.cache` folders for each `.smali` file, that was opened. Before packing APK, ensure you remove `KeyValueStoreModule.smali.cache` directory, located in same directory as `KeyValueStoreModule.smali`. 
-
-## Step 4. Change package name
-This step is useful if you want to have original Subaru Starlink application installed on your device. Potentially, it could be omitted, but nevertheless renaming package is recommended.
-
-In `apk\patched\AndroidManifest.xml` modify `manifest` xml element by changing the value of `package` attribute:
-
-```diff
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:compileSdkVersion="30"
-    android:compileSdkVersionCodename="11"
--   package="com.subaru.global.infotainment.gen2"
-+   package="com.your.package.name"
-    platformBuildVersionCode="30"
-    platformBuildVersionName="11">
-``` 
-
-## Step 5. Build and sign
-
-Before building APK file, ensure there are no `.cache` folders from `jadx-gui`, otherwise build might crash.
-
-```sh
-java -jar tools\apktool.jar b apk\patched -o apk\repacked.apk
-java -jar tools\sign.jar -a apk\repacked.apk
-```
-
-The command will produce `apk\repacked-aligned-debugSigned.apk` file, that can be installed on Android device.
