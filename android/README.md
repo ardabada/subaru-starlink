@@ -29,7 +29,7 @@ In `apk\patched\AndroidManifest.xml` modify `manifest` xml element by changing t
 
 ## Step 4. Build and sign
 
-> **Important** `jadx-gui` generates `.cache` folders for each `.smali` file, that was opened. Before building APK file, ensure there are no `.cache` folders from `jadx-gui`, otherwise build might crash. To clear cache in `apk` folder, execute `tools\clear-cache.pk1`.
+> **Important** `jadx-gui` generates `.cache` folders for each `.smali` file, that was opened. Before building APK file, ensure there are no `.cache` folders from `jadx-gui`, otherwise build might crash. To clear cache in `apk` folder, execute `tools\clear-cache.ps1`.
 
 ```sh
 java -jar tools\apktool.jar b apk\patched -o apk\repacked.apk
