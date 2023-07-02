@@ -105,3 +105,5 @@ module.factory.27=com.subaru.global.infotainment.gen2.modules.EVEModuleFactory
 ##
 ```
 Note, indexes start at 0 and end with `module.num-1`.
+
+After compiling and installing apk file, you can perform a call to `/hello` with any HTTP method and you'll see `Hello, World!` as the response.
