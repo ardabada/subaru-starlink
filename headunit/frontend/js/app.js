@@ -34,12 +34,12 @@ App.Events.Map = App.Events.Map || {};
     MapEvents._tilesLoading = 0;
     MapEvents._tilesLoaded = 0;
     MapEvents.OnMapTileLoadStart = function() {
-        document.getElementById('loadstart').append(' ' + Date.now().toString());
+        // document.getElementById('loadstart').append(' ' + Date.now().toString());
         // output('Map tile load start ' + Date.now());
         MapEvents._tilesLoading++;
     }
     MapEvents.OnMapTileLoadEnd = function() {
-        document.getElementById('loadend').append(' ' + Date.now().toString());
+        // document.getElementById('loadend').append(' ' + Date.now().toString());
         MapEvents._tilesLoaded++;
         if (!App.isInitialized) {
             if (MapEvents._tilesLoaded == MapEvents._tilesLoading) {

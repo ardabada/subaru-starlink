@@ -5533,6 +5533,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
   function Gn(e, t, r, n) {
     if (void 0 === r && (r = {}), t in Vn) return n && (n.request = Vn[t][0]), Vn[t][1];
     var a = r.transformRequest && r.transformRequest(t, e) || new Request(t);
+    console.log(a);
     a.headers.get("Accept") || a.headers.set("Accept", "application/json"), n && (n.request = a);
     var i = fetch(a).then(function (e) {
       return delete Vn[t], e.ok ? e.json() : Promise.reject(new Error("Error fetching source " + t));
@@ -6153,6 +6154,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           c,
           d = e instanceof Q["default"] ? "vector" : "geojson";
         if (u ? o = Array.isArray(u) ? t.layers.find(function (e) {
+          console.log('is array');
           return e.id === u[0];
         }).source : u : (o = Object.keys(t.sources).find(function (e) {
           return t.sources[e].type === d;

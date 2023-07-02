@@ -5,7 +5,7 @@
  */
 ;
 var SmartAccess = SmartAccess || {};
-SmartAccess.isSmtEmurator = localStorage.getItem("smtemu_debug");
+SmartAccess.isSmtEmurator = false;//localStorage.getItem("smtemu_debug");
 (function(SA) {
     var nnapi = null;
     SA.IS_SIMULATOR = false;

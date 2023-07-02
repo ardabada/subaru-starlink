@@ -280,7 +280,7 @@
   if (typeof superClass!=='function'&&superClass!==null) {
     throw new TypeError('Super expression must either be null or a function');
   }
-  console.log(superClass, superClass.prototype);
+  // console.log(superClass, superClass.prototype);
   var o = Object.create(superClass&&superClass.prototype, {constructor: {value: subClass, writable: true, configurable: true}});;
   subClass.prototype=o; Object.defineProperty(subClass, 'prototype', {writable: false}); if (superClass)_setPrototypeOf(subClass, superClass);
 } function _createSuper(Derived) {

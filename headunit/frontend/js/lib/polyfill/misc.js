@@ -64,3 +64,92 @@
         }
     };
 })();
+
+(function() {
+    // Polyfill for Headers class
+    if (typeof Headers === 'undefined') {
+        window.Headers = function (init) {
+        var map = {};
+    
+        if (init instanceof Headers) {
+            init.forEach(function (value, name) {
+            map[name.toLowerCase()] = value;
+            });
+        } else if (Array.isArray(init)) {
+            init.forEach(function (tuple) {
+            if (tuple.length === 2) {
+                map[tuple[0].toLowerCase()] = tuple[1];
+            }
+            });
+        } else if (init) {
+            for (var name in init) {
+            if (init.hasOwnProperty(name)) {
+                map[name.toLowerCase()] = init[name];
+            }
+            }
+        }
+    
+        this.append = function (name, value) {
+            name = name.toLowerCase();
+            if (map[name] !== undefined) {
+            map[name] += ',' + value;
+            } else {
+            map[name] = value;
+            }
+        };
+    
+        this.delete = function (name) {
+            delete map[name.toLowerCase()];
+        };
+    
+        this.get = function (name) {
+            return map[name.toLowerCase()];
+        };
+    
+        this.has = function (name) {
+            return map.hasOwnProperty(name.toLowerCase());
+        };
+    
+        this.set = function (name, value) {
+            map[name.toLowerCase()] = value;
+        };
+    
+        this.forEach = function (callback, thisArg) {
+            for (var name in map) {
+            if (map.hasOwnProperty(name)) {
+                callback.call(thisArg, map[name], name, this);
+            }
+            }
+        };
+        };
+    }
+})();
+
+(function() {
+    // Polyfill for Request class
+    if (typeof Request === 'undefined') {
+        window.Request = function (input, init) {
+        init = init || {};
+        var method = init.method || 'GET';
+        var headers = new Headers(init.headers || {});
+        var body = init.body || null;
+        var referrer = init.referrer || '';
+        var mode = init.mode || null;
+        var credentials = init.credentials || 'omit';
+        var cache = init.cache || 'default';
+        var redirect = init.redirect || 'follow';
+        var integrity = init.integrity || '';
+    
+        this.method = method;
+        this.url = input;
+        this.headers = headers;
+        this.body = body;
+        this.referrer = referrer;
+        this.mode = mode;
+        this.credentials = credentials;
+        this.cache = cache;
+        this.redirect = redirect;
+        this.integrity = integrity;
+        };
+    }
+})();

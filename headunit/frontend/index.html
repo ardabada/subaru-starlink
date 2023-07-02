@@ -17,6 +17,7 @@
             return null;
         }
         onload = function() {
+            var polifills = 'CustomEvent,Element,Event,Map,MutationObserver,Object.assign,Promise,ResizeObserver,Set,String.prototype.includes,String.prototype.startsWith,Array.prototype.find,fetch';
             var scripts = [
                 'js/ui.js',
                 'js/smartaccess.dev.js',
@@ -25,16 +26,31 @@
                 'js/lang/lang_ru.js',
                 'js/lang/lang_ro.js',
                 'js/lang/lang_en.js',
-                'https://polyfill.io/v3/polyfill.js?features=String.prototype.includes',
-                //'js/lib/polyfill/misc.js', 
-                //'js/lib/polyfill/polyfill.min.js', 
-                //'https://polyfill.io/v3/polyfill.js?features=CustomEvent%2CElement%2CEvent%2CMap%2CMutationObserver%2CObject.assign%2CPromise%2CResizeObserver%2CSet%2CString.prototype.includes%2CString.prototype.startsWith',
-                //'js/lib/polyfill/webcomponents-bundle.js',
+                // 'https://polyfill.io/v3/polyfill.js?features=String.prototype.includes',
+                'js/lib/polyfill/misc.js', 
+                // 'js/lib/polyfill/polyfill.min.js', 
+                'https://polyfill.io/v3/polyfill.js?version=3.111.0&features='+encodeURIComponent(polifills),
+                // 'https://polyfill.io/v3/polyfill.js?features=CustomEvent%2CElement%2CEvent%2CMap%2CMutationObserver%2CObject.assign%2CPromise%2CResizeObserver%2CSet%2CString.prototype.includes%2CString.prototype.startsWith',
+                'js/lib/polyfill/webcomponents-bundle.js',
+                // 'https://polyfill.io/v3/polyfill.min.js?features=XMLHttpRequest',
                 'js/lib/openlayers/ol.js',
-                //'js/lib/openlayers/olms.js',
+                'js/lib/openlayers/olms.js',
                 'js/themes/style.js',
                 'js/navigation.js',
                 'js/app.js' ];
+                // let lastRenderTime = 0;
+                // const frameRate = 60; // Limit to 60 frames per second
+
+                // var xxx = 0;
+            // var _based = requestAnimationFrame;
+            //     requestAnimationFrame = function(callback) {
+            //         // var timestamp = Date.now();
+            //         // if (timestamp - lastRenderTime >= 1000 / frameRate) {
+            //             console.log('requestAnimationFrame', arguments);
+            //             _based(callback);
+            //         // }
+            //         // lastRenderTime = timestamp;
+            //     }
             Loader.lazyload(scripts, function(i) {
                 if (i == 1) {
                     //appInit();
@@ -67,14 +83,14 @@
         <div class="progress-bar"><div class="filler" width="0px;"></div></div>
     </div>
     <div class="container">
-        <p>load start</p>
+        <!-- <p>load start</p>
         <div id="loadstart"></div>
         <p>load end</p>
         <div id="loadend"></div>
         <p>prerender</p>
         <div id="prerender"></div>
         <p>rendercomplete</p>
-        <div id="rendercomplete"></div>
+        <div id="rendercomplete"></div> -->
         <div id="map"></div>
     </div>
 	<object type="application/NaviNativeAPI" id="plugin" width="0" height="0"></object>
