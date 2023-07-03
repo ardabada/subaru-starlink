@@ -419,6 +419,7 @@ local.properties
 /android/apk/patched
 /android/apk/repacked.apk
 /android/apk/repacked-aligned-debugSigned.apk
+/android/custom/smali/**/*.smali
 /android/custom/**/*.class
 /android/custom/**/*.dex
 /headunit/tools/openlayers/.parcel-cache

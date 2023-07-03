@@ -2,6 +2,7 @@ package com.uievolution.microserver;
 
 import com.uievolution.microserver.http.Header;
 import com.uievolution.microserver.http.StatusLine;
+import android.content.Context;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -42,6 +43,10 @@ public abstract class AbstractMSModuleImpl implements MSModule {
     }
 
     public void disableGzipEncoding() {
+    }
+
+    public Context getContext() {
+       return null;
     }
 
     protected abstract byte[] doStart();

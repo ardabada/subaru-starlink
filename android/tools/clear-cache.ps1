@@ -4,4 +4,3 @@ foreach ($directory in $cacheDirectories) {
     Write-Output "Deleting directory: $($directory.FullName)"
     Remove-Item -Path $directory.FullName -Recurse -Force
 }
-
