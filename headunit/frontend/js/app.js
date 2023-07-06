@@ -20,33 +20,33 @@ var App = App || {};
     }
 })(App);
 
-// App.Events = App.Events || {};
-// (function(Events) {
-// })(App.Events);
+App.Events = App.Events || {};
+(function(Events) {
+})(App.Events);
 
-// App.Events.Map = App.Events.Map || {};
-// (function(MapEvents) {
-//     MapEvents._tilesLoading = 0;
-//     MapEvents._tilesLoaded = 0;
-//     MapEvents.OnMapTileLoadStart = function() {
-//         // document.getElementById('loadstart').append(' ' + Date.now().toString());
-//         // output('Map tile load start ' + Date.now());
-//         MapEvents._tilesLoading++;
-//     }
-//     MapEvents.OnMapTileLoadEnd = function() {
-//         // document.getElementById('loadend').append(' ' + Date.now().toString());
-//         MapEvents._tilesLoaded++;
-//         if (!App.isInitialized) {
-//             if (MapEvents._tilesLoaded == MapEvents._tilesLoading) {
-//                 App.isInitialized = true;
-//                 //UI.GlobalLoading.hide();
-//             }
-//         }
-//     }
-//     MapEvents.OnMapTileLoadError = function() {
-//         MapEvents._tilesLoaded++;
-//         if (!App.isInitialized) {
-//             UI.GlobalError.show(Lang.getCurrent().errors.mapLoad);
-//         }
-//     }
-// })(App.Events.Map);
+App.Events.Map = App.Events.Map || {};
+(function(MapEvents) {
+    MapEvents._tilesLoading = 0;
+    MapEvents._tilesLoaded = 0;
+    MapEvents.OnMapTileLoadStart = function() {
+        // document.getElementById('loadstart').append(' ' + Date.now().toString());
+        // output('Map tile load start ' + Date.now());
+        MapEvents._tilesLoading++;
+    }
+    MapEvents.OnMapTileLoadEnd = function() {
+        // document.getElementById('loadend').append(' ' + Date.now().toString());
+        MapEvents._tilesLoaded++;
+        if (!App.isInitialized) {
+            if (MapEvents._tilesLoaded == MapEvents._tilesLoading) {
+                App.isInitialized = true;
+                //UI.GlobalLoading.hide();
+            }
+        }
+    }
+    MapEvents.OnMapTileLoadError = function() {
+        MapEvents._tilesLoaded++;
+        if (!App.isInitialized) {
+            UI.GlobalError.show(Lang.getCurrent().errors.mapLoad);
+        }
+    }
+})(App.Events.Map);

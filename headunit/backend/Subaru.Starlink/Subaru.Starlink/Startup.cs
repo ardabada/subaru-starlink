@@ -28,6 +28,13 @@ namespace Subaru.Starlink
             }
 
             app.UseRouting();
+            app.UseCors(builder =>
+            {
+                builder
+                    .AllowAnyHeader()
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod();
+            });
 
             app.UseEndpoints(endpoints =>
             {
