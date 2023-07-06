@@ -83,7 +83,7 @@ Navigation.Map = Navigation.Map || {};
       });
 	  
       // olms.applyStyle(layer, styleToApply, {accessToken: 'pk.eyJ1IjoiYXJkYWJhZGEiLCJhIjoiY2prbWxqdzh0MGNkNjN2b3p1dmlqYWQ4OSJ9.CZWcYYEp2YSB9z9u8TGO4g'});
-	  olms.applyStyle(layer, 'mapbox://styles/mapbox/bright-v9', {accessToken: 'pk.eyJ1IjoiYXJkYWJhZGEiLCJhIjoiY2prbWxqdzh0MGNkNjN2b3p1dmlqYWQ4OSJ9.CZWcYYEp2YSB9z9u8TGO4g'});
+	  //olms.applyStyle(layer, 'mapbox://styles/mapbox/bright-v9', {accessToken: 'pk.eyJ1IjoiYXJkYWJhZGEiLCJhIjoiY2prbWxqdzh0MGNkNjN2b3p1dmlqYWQ4OSJ9.CZWcYYEp2YSB9z9u8TGO4g'});
 	//   olms.applyStyle(layer, 'http://localhost:3000/js/themes/theme_point_cleaned.json');
 
         Map._map = new ol.Map({

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using Subaru.Starlink.Services;
 
 namespace Subaru.Starlink.Controllers
@@ -22,8 +23,9 @@ namespace Subaru.Starlink.Controllers
             [FromQuery] string? format,
             CancellationToken cancellationToken)
         {
-            var result = await mapService.GetMapTileAsync(z, x, y, cancellationToken);
-            return File(result, "application/octet-stream");
+            var file = await mapService.GetMapTileAsync(z, x, y, cancellationToken);
+            Response.Headers.ContentEncoding = new StringValues("gzip");
+            return File(file, "application/protobuf");
         }
     }
 }
