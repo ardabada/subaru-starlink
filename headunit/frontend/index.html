@@ -53,7 +53,7 @@
             //     }
             Loader.lazyload(scripts, function(i) {
                 if (i == 1) {
-                    //appInit();
+                    appInit();
                 }
                 UI.GlobalLoading.setProgress((i + 1) * 100 / scripts.length);
             }, function() {
@@ -83,14 +83,6 @@
         <div class="progress-bar"><div class="filler" width="0px;"></div></div>
     </div>
     <div class="container">
-        <!-- <p>load start</p>
-        <div id="loadstart"></div>
-        <p>load end</p>
-        <div id="loadend"></div>
-        <p>prerender</p>
-        <div id="prerender"></div>
-        <p>rendercomplete</p>
-        <div id="rendercomplete"></div> -->
         <div id="map"></div>
     </div>
 	<object type="application/NaviNativeAPI" id="plugin" width="0" height="0"></object>

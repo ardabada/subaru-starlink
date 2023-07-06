@@ -20,9 +20,13 @@ if ($currentDir.Path -like "*\android")  {
         Start-Process -FilePath $dxPath -NoNewWindow -ArgumentList "--dex", "--output", $dexPathArg, $classPathArg -Wait
         Set-Location "..\"
         $dexPathArg = "custom\" + $dexPathArg
-        Start-Process -FilePath "java" -NoNewWindow -ArgumentList "-jar", "tools\baksmali.jar", "disassemble", $dexPathArg, "-o", "custom\smali" -Wait
+        # Start-Process -FilePath "java" -NoNewWindow -ArgumentList "-jar", "tools\baksmali.jar", "disassemble", $dexPathArg, "-o", "custom\smali" -Wait
+        Start-Process -FilePath "java" -NoNewWindow -ArgumentList "-jar", "tools\baksmali2.jar", "-o", "custom\smali", $dexPathArg -Wait
         $sourcePath = $currentDir.Path + "\custom\smali\" + $path + "\" + $file + ".smali"
         $destinationPath = $currentDir.Path + "\apk\patched\smali\" + $path + "\" + $file + ".smali"
+        Write-Output $sourcePath
+        Write-Output $destinationPath
+        New-Item -ItemType File -Path $destinationPath -Force
         Copy-Item -Path $sourcePath -Destination $destinationPath -Force
     } else {
         Write-Output "Expected package name and java file name"

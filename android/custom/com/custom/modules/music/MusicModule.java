@@ -51,7 +51,8 @@ public class MusicModule extends AbstractMSModuleImpl {
     protected byte[] doStart() {
         // if (isGetMethod()) {
             Song currentSong = receiver.song;//SpotifyBroadcastReceiverCallback.getInstance().getCurrentSong();
-            sendResponse(200, (String) null, sCommonResponseHeaders, currentSong == null ? "no music".getBytes() : currentSong.toString().getBytes());
+            
+            sendResponse(200, (String) null, sCommonResponseHeaders, JsonUtils.toJson(currentSong).toString().getBytes());
         // }
         // else {
         //     sendResponse(405, (String) null, sCommonResponseHeaders, "MusicModule module can only accept a GET request".getBytes());
@@ -60,4 +61,5 @@ public class MusicModule extends AbstractMSModuleImpl {
         return null;
     }
 
+    
 }
