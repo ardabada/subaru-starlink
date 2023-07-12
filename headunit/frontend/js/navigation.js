@@ -22,7 +22,8 @@ Navigation.Map = Navigation.Map || {};
             format: new ol.format.MVT({
                 // layers: ['water', 'transportation', 'building']
             }),
-            url: 'http://68.183.64.76:5001/map/{z}/{x}/{y}'
+            url: 'http://localhost:5241/map/{z}/{x}/{y}'
+            // url: 'http://68.183.64.76:5001/map/{z}/{x}/{y}'
             // strategy: ol.loadingstrategy.extent,
             // url: 'https://map.md/api/tiles/data/v3/{z}/{x}/{y}.pbf?v=2023-01-23T08:59:36Z'
             //url: 'https://api.mapbox.com/v4/mapbox.mapbox-streets-v8/{z}/{x}/{y}.vector.pbf?access_token=pk.eyJ1IjoiYXJkYWJhZGEiLCJhIjoiY2prbWxqdzh0MGNkNjN2b3p1dmlqYWQ4OSJ9.CZWcYYEp2YSB9z9u8TGO4g'
@@ -53,7 +54,7 @@ Navigation.Map = Navigation.Map || {};
           updateWhileAnimating: false,
           updateWhileInteracting: false,
           declutter: true,
-          style: function(feature, resolution) { return null; }
+          //style: function(feature, resolution) { return null; }
           //style: lightTheme
           // style: function (feature, resolution) {
           //     var layer = feature.get('layer');
@@ -93,6 +94,8 @@ Navigation.Map = Navigation.Map || {};
             view: new ol.View({
                 center: [options.longitude,options.latitude],
                 zoom: options.zoom,
+                maxZoom: 16,
+                minZoom: 12
             }),
             interactions: ol.interaction.defaults.defaults({
               dragPan: false,

@@ -1,0 +1,1 @@
+jar cfve app.jar com.custom.App .

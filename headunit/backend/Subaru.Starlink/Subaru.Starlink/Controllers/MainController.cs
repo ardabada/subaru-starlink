@@ -24,7 +24,7 @@ namespace Subaru.Starlink.Controllers
             CancellationToken cancellationToken)
         {
             var file = await mapService.GetMapTileAsync(z, x, y, cancellationToken);
-            Response.Headers.ContentEncoding = new StringValues("gzip");
+            //Response.Headers.ContentEncoding = new StringValues("gzip");
             return File(file, "application/protobuf");
         }
     }
